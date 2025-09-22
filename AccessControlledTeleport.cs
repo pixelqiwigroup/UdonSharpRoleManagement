@@ -7,7 +7,7 @@ public class AccessControlledTeleport : UdonSharpBehaviour
 {
     [Header("Настройки доступа")]
     [Tooltip("0 = Все, 1 = VIP, 2 = Staff")]
-    public int requiredAccess = 0; // 0=Everyone, 1=VIP, 2=Staff
+    public int requiredAccess = 0;
     
     [Header("Ссылка на RoleManager")]
     public RoleManager roleManager;
@@ -17,7 +17,6 @@ public class AccessControlledTeleport : UdonSharpBehaviour
     
     [Header("Сообщения")]
     public string accessDeniedMessage = "Доступ запрещен";
-    public string teleportSuccessMessage = "Телепортация выполнена";
     
     public override void Interact()
     {
@@ -27,7 +26,6 @@ public class AccessControlledTeleport : UdonSharpBehaviour
         {
             if (teleportTarget != null)
             {
-                // Телепортируем локального игрока
                 VRCPlayerApi localPlayer = Networking.LocalPlayer;
                 if (localPlayer != null)
                 {
@@ -35,34 +33,28 @@ public class AccessControlledTeleport : UdonSharpBehaviour
                         teleportTarget.position,
                         teleportTarget.rotation
                     );
-                    // Закомментировано для продакшена:
-                    // Debug.Log($"[Teleport] {localPlayer.displayName} телепортирован к {teleportTarget.name}");
                 }
-            }
-            else
-            {
-                // Закомментировано для продакшена:
-                // Debug.LogWarning($"[Teleport] Точка телепортации не назначена для {gameObject.name}");
             }
         }
         else
         {
-            // Закомментировано для продакшена:
-            // Debug.Log($"[Teleport] {Networking.LocalPlayer.displayName} - доступ запрещен");
             SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, "ShowAccessDenied");
         }
     }
     
     private bool CheckAccess()
     {
+        if (roleManager == null) 
+            return requiredAccess == 0;
+        
         switch (requiredAccess)
         {
             case 0: // Everyone
                 return true;
-            case 1: // VIP
-                return roleManager != null && roleManager.IsVIP();
-            case 2: // Staff
-                return roleManager != null && roleManager.IsStaff();
+            case 1: // VIP (доступ для VIP и Staff)
+                return roleManager.IsVIP() || roleManager.IsStaff();
+            case 2: // Staff (только для Staff)
+                return roleManager.IsStaff();
             default:
                 return false;
         }
@@ -70,7 +62,6 @@ public class AccessControlledTeleport : UdonSharpBehaviour
     
     public void ShowAccessDenied()
     {
-        // Закомментировано для продакшена:
         // Debug.Log(accessDeniedMessage);
     }
 }
