@@ -3,6 +3,8 @@ A collection of scripts to give you an ability to assign roles to users (VIP, St
 
 These scripts were written completely by DeepSeek and ChatGPT, and in all honesty DeepSeek did a much better job, even though I had to give it some working examples of things it had outdated knowledge about.
 
+The intended purpose of these scripts is to aid in the creation of club/rave/concert worlds where you would only want to give certain people permissions to access the stage, for example, or the staff booth. Or just *any version of a private room only certain people should have access to*. 
+
 # Preparations (a.k.a. how to use the RoleManager script)
 1. Create an empty GameObject
 2. Add the RoleManager script to it
