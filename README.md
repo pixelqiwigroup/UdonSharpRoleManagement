@@ -1,6 +1,7 @@
 # UdonSharpRoleManagement
-A collection of scripts to give you an ability to give users roles (VIP, Staff) and to create Toggles and Teleports limited only to these roles.
-Written entirely by DeepSeek and ChatGPT.
+A collection of scripts to give you an ability to assign roles to users (VIP, Staff) and to create Toggles and Teleports limited only to these roles.
+
+These scripts were written completely by DeepSeek and ChatGPT, and in all honesty DeepSeek did a much better job, even though I had to give it some working examples of things it had outdated knowledge about.
 
 # Preparations (a.k.a. how to use the RoleManager script)
 1. Create an empty GameObject
