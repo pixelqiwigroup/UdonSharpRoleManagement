@@ -5,6 +5,8 @@ These scripts were written completely by DeepSeek and ChatGPT, and in all honest
 
 The intended purpose of these scripts is to aid in the creation of club/rave/concert worlds where you would only want to give certain people permissions to access the stage, for example, or the staff booth. Or just *any version of a private room only certain people should have access to*. 
 
+Note: Staff role inherits access to VIP limited objects.
+
 # Preparations (a.k.a. how to use the RoleManager script)
 1. Create an empty GameObject
 2. Add the RoleManager script to it
@@ -25,7 +27,8 @@ The intended purpose of these scripts is to aid in the creation of club/rave/con
 }
 ```
 
-This *should* work but I did not test it.
+This does work with any direct link pointing to your .json file.
+If you upload it into a GitHub repository, your link should start with `https://raw.githubusercontent.com/...`.
 
 # How to use the AccessControlledButton script
 1. Choose/create a GameObject and enable "Is Trigger" in the collider properties
